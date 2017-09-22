@@ -5,6 +5,19 @@ RUN yum install -y openssh-clients
 RUN yum install -y sudo
 RUN yum install -y gcc
 RUN yum install -y make openssl-devel curl-devel expat-devel perl perl-devel gettext
+
+#Quick way to get some of the tools
+
+RUN yum groupinstall -y "Development tools"
+RUN yum install -y epel-release
+RUN yum install -y tmux vim-enhanced xclip autojump keychain puppet rubygems puppet-lint python-pip python-devel
+
+RUN pip install --upgrade pip
+RUN pip install virtualenvwrapper
+RUN pip install ansible
+
+## Fin
+
 RUN mkdir /app
 
 RUN echo "jamie    ALL=(ALL)     NOPASSWD: ALL" > /etc/sudoers.d/jamie
